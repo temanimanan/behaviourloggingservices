@@ -1,0 +1,6 @@
+{
+  "name": "AW Asgn1",
+  "description": "Web pages with behavior logging services",
+  "repository": "https://git.heroku.com/behaviourloggingservices.git",
+  "keywords": ["node", "express", "passport", "bootstrap", "heroku"]
+}

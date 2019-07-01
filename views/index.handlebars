@@ -1,0 +1,403 @@
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
+<script> 
+    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf6d"];
+</script>  
+<link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+
+<h1 class="header">User Dashboard</h1>
+<h3 class="user">Welcome <b>{{username}}</b></h3>
+
+<br/>
+
+<p> This application logs the actions performed on Stackoverflow. You need to install the Chrome Extension and navigate to the Stackoverflow page.</p>
+<p> Chrome Extension Link: <a href="/PerformLogging.crx">PerformLogging</a></p>
+<p> Stackoverflow Link: <a href="https://stackoverflow.com/questions/3988788/what-is-a-stack-trace-and-how-can-i-use-it-to-debug-my-application-errors">Click Here</a></p>
+
+<br/>
+
+<p>NOTE: Sign-in to Stackoverflow is <b>NOT REQUIRED</b></p>
+<p>NOTE: Extension is auto-enabled on Stackoverflow pages</p>
+<p>NOTE: Tables refresh every 5 seconds</p>
+
+<br/><br/><br/>
+
+<h3><b>Open Social User Modeling: </b><a href="/data">Click Here</a> (Complete Analysis) </h3>
+<p><i>NOTE: The above link will redirect you to help user to perform activity comparisions/analysis with other users</i></p>
+
+<br/><br/><br/>
+
+<h3 class = "logins"><b> User Login History: </b></h3>
+<div id="analysis1"></div>
+<div style="overflow:scroll; height:200px">
+    <p><b>Representation:</b></p>
+    <p>
+        <li>Current user login frequencies</li>
+        <li>Single user login analysis</li>
+        <li>Compare/Analyse the dates when the user was active the most</li>
+    </p>
+    <p><b>Analytics:</b></p>
+    <p>
+        This graph is a visual representation of the user login activity which will help user to 
+        analyse their time involved with StackOverFlow on a partiular date.
+    </p>
+    <p><b>How does it matter?</b></p>
+    <p>
+        <li>To visualize and analyse, how frequently the current user logged in StackOverFlow page on a particular date</li>
+        <li>To visualize and analyse, which days the user has been involved with StackOverFlow</li>
+    </p>
+    <p><b>How to get Results?</b></p>
+    <p>
+        <li><i>Mouse Hover:</i> Provides the action counts of current user</li>
+        For instance: More number of logins on a particular day implies higher time spent and more the user was active on that date.
+    </p>
+</div>
+
+<br/>
+
+<div class = "loginContainer" style="overflow:scroll; width:200px; height:300px">
+    <table class = "loginTable" border = "2">
+        <thead>
+            <tr>
+                <th> Login Time </th>
+            </tr>
+            <tr>
+                <td> Loading... </td>
+            </tr>
+        </thread>
+    </table>
+</div>
+
+<br/>
+
+<p>
+    The application logs following 5 user actions:<br/>
+    1. Upvote<br/>
+    2. Downvote<br/>
+    3. Star<br/>
+    4. Share<br/>
+    5. Comment<br/>
+</p>
+
+<br/><br/><br/>
+
+<h3 class = "actions"><b> User Action History: </b></h3>
+<div id="analysis2"></div>
+<div style="overflow:scroll; height:200px">
+    <p><b>Representation:</b></p>
+    <p>
+        <li>Current user action frequencies</li>
+        <li>Single user action analysis</li>
+        <li>Compare/Analyse the actions the user performed with other actions</li>
+    </p>
+    <p><b>Analytics:</b></p>
+    <p>
+        This graph is a visual representation of the user actions which will help user to analyse their 
+        activity performed on StackOverFlow
+    </p>
+    <p><b>How does it matter?</b></p>
+    <p>
+        <li>To visualize and analyse, how frequently a particular action the current user is performing on the StackOverFlow page</li>
+        <li>To visualize and analyse, which action the user has performing most</li>
+    </p>
+    <p><b>How to get Results?</b></p>
+    <p>
+        <li><i>Mouse Hover:</i> Provides the action counts of current user</li>
+        For instance: Higher the action (shared) counts implies the user was interested in the answer and wanted to share it with friends OR maybe want to discuss it in-depth.
+    </p>
+</div>
+
+<br/>
+
+<div class="actionContainer" style="overflow:scroll; width:300px; height:300px">
+    <table class = "actionTable" border = "2">
+        <thead>
+            <tr>
+                <th> Action </th>
+                <th> Action Time </th>
+            </tr>
+            <tr>
+                <td colspan = "2"> Loading... </td>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<br/>
+
+<div style="overflow:scroll; height:200px">
+<p>
+    <b>Why do you decide to log these actions?</b><br/>
+    Logging user actions helps to perform analytics which is very useful to provide adaptive web experience.<br/>
+    Logging user actions from Stackoverflow webpage would provide user interests in programming languages.<br/>
+    The 5 actions selected to be logged are:<br/>
+    1. Upvote: When user searches for any solution and tries to execute which help them, they upvotes the answer<br/>
+    2. Downvote: When user searches for any solution and tries to execute which doesn't help them, they downvotes the answer<br/>
+    3. Star: When the user find a solution which would be used frequently, they mark the answer as favourite/starred<br/>
+    4. Share: When user works in a team, they share the answers withen the group<br/>
+    5. Comment: When the user tries to provide a better solution OR additional information, they add comments<br/>
+    These logs will help us to determine the users programming language preferences, how comfortable they are in particular language.<br/>
+</p>
+</div>
+
+<br/><br/><br/>
+
+<div id="bonusAnalysis"></div>
+<div style="overflow:scroll; height:200px">
+    <p><b>Representation:</b></p>
+    <p>
+        <li>Collective StackOverFlow tag chart</li>
+        <li>StackOverFlow tag analysis</li>
+        <li>Compare/Analyse the density of tags user searched</li>
+    </p>
+    <p><b>Analytics:</b></p>
+    <p>
+        This wordcloud is a visual representation of the all the tags searched by the user on
+        StackOverFlow page. Based on the this cloud, user proficiency in a particular area can be analysed.
+    </p>
+    <p><b>How does it matter?</b></p>
+    <p>
+        <li>To visualize and analyse, how frequently a particular tag is searched on StackOverFlow page</li>
+        <li>To visualize and analyse, user proficiency in the field based on particular tag frequency</li>
+    </p>
+    <p><b>How to get Results?</b></p>
+    <p>
+        <li><i>Mouse Hover:</i> Provides the frequencies of the tag</li>
+        <li>Larger the word size, higher is its frequency</li>
+        For instance: If count of tag (java) is the highest, this implies that
+        user is comfortable in that language OR trying to find indepth knowledge in that field OR able to underatand the
+        solutions/comments.
+    </p>
+</div>
+
+<script>
+setInterval(function(){
+    $.ajax({
+    url: "/getData",
+    method: 'GET'
+    }).done(function(data) {
+        console.log(data);
+
+        $(".loginTable").find("tr:gt(0)").remove();
+        for(var i=0; i<data.userlogindata.length; i++) {
+            var loginRow = data.userlogindata[i];
+            $(".loginTable").append("<tr> <td>" + loginRow.timestamp + "</td> </tr>");
+        }
+
+        $(".actionTable").find("tr:gt(0)").remove();
+        for(var i=0; i<data.useractiondata.length; i++) {
+            var actionRow = data.useractiondata[i];
+            $(".actionTable").append("<tr> <td>" + actionRow.action + "</td> <td>" + actionRow.timestamp + "</td> </tr>");
+        }
+    });
+}, 5000)
+</script>
+
+<script>
+    var series1 = new Array();
+    var dateArray = new Array();
+    
+    $.get("/getData", function(data){
+        data = data.userlogindata;
+        console.log(data);
+
+        for (var i=0; i<data.length; i++) {
+            var loginDate = new Date(data[i].timestamp);
+            var day = loginDate.getUTCDate();
+            var month = loginDate.getUTCMonth() + 1;
+            var year = loginDate.getUTCFullYear();
+            var date1 = month + "/" + day + "/" + year;
+            var index = dateArray.findIndex(x=>x==date1);
+            if(index == -1) {
+                dateArray.push(date1);
+            }
+        }
+        console.log(dateArray);
+
+        var user = data[0].username;
+        var value = new Array(dateArray.length).fill(0);
+        for (var i=0; i<data.length; i++) {
+            var loginDate = new Date(data[i].timestamp);
+            var day = loginDate.getUTCDate();
+            var month = loginDate.getUTCMonth() + 1;
+            var year = loginDate.getUTCFullYear();
+            var date2 = month + "/" + day + "/" + year;
+            var dateIndex = dateArray.findIndex(x=>x==date2);
+            value[dateIndex]++;
+        }
+        series1.push({
+            name: user,
+            data: value
+        });
+        console.log(series1);
+
+        text = 'java java java java functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  java java java java java java java java java java jquery node nodejs jquery node nodejs jquery erlang elixir ruby rails node nodejs jquery node nodejs python erlang elixir python erlang elixir python erlang elixir python erlang elixir angular js';
+        if (user == 'aaa') {
+            text = 'java javascript functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle ';
+        }
+        if (user == 'bbb') {
+            text = 'c c++ c/c++ functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle   java python erlang elixir java java java java java java java java ruby rails php erlang elixir ruby rails php erlang elixir ruby rails php erlang elixir ruby rails php erlang elixir ruby rails php';
+        }
+        if (user == 'ccc') {
+            text = 'java java java  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle java python jquery java java java java java java java java node node nodejs node nodejs node nodejs nodejs python erlang elixir python erlang elixir python erlang elixir python erlang elixir python erlang elixir python erlang elixir angular js';
+        }
+        createWordCloud(text);
+
+        Highcharts.chart('analysis1', {
+            title: {
+                text: 'User Login Frequency'
+            },
+            yAxis: {
+                title: {
+                    text: 'Login Frequency'
+                }
+            },
+            xAxis: {
+                title: {
+                    text: 'Dates'
+                },
+                categories: dateArray
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            },
+            series: series1,
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
+    });
+</script>
+
+<script>
+    var series2 = new Array();
+    var categories = new Array();
+
+    $.get("/getData", function(data){
+        data = data.useractiondata;
+        console.log(data);
+
+        for (var i=0; i<data.length; i++) {
+            var value = data[i].action;
+            var index = categories.findIndex(x=>x==value);
+            if (index == -1) {
+                categories.push(value);
+            }
+        };
+        console.log(categories);
+
+        var user = data[0].username;
+        var values = new Array(categories.length).fill(0);
+        for (var i=0; i<data.length; i++) {
+            var action = data[i].action;
+            var indexValue = categories.findIndex(x=>x==action);
+            values[indexValue]++;
+        }
+        console.log(values);
+        series2.push({
+            name: user,
+            data: values
+        })
+
+        console.log(series2);
+        console.log(categories);
+        Highcharts.chart('analysis2', {
+            chart: {
+                type: 'column',
+                options3d: {
+                    enabled: true,
+                    alpha: 10,
+                    beta: 25,
+                    depth: 70
+                }
+            },
+            title: {
+                text: 'User Actions Comparision'
+            },
+            xAxis: {
+                categories: categories,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Count'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:10f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: series2
+        });
+    });
+</script>
+
+<script>
+    function createWordCloud(text) {
+        var myConfig = {
+            title: {
+                text: 'User Tags',
+                "font-weight":"none"
+            },
+            type: 'wordcloud',
+            options: {
+                text: text,
+                rotate: true,
+                style: {
+                    fontFamily: 'Crete Round',
+                    tooltip: {
+                        text: '%text: %hits',
+                        visible: true,
+                        
+                        alpha: 0.9,
+                        backgroundColor: '#1976D2',
+                        borderRadius: 2,
+                        borderColor: 'none',
+                        fontColor: 'white',
+                        fontFamily: 'Georgia',
+                        textAlpha: 1
+                    }
+                }
+            },
+        };
+    
+        zingchart.render({ 
+            id: 'bonusAnalysis', 
+            data: myConfig, 
+            height: 500, 
+            width: '100%' 
+        });
+    }
+</script>
+

@@ -1,0 +1,402 @@
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
+<script> 
+    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf6d"];
+</script>  
+<link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+
+<h1 class="page-header">Open Social User Modeling</h1>
+<p><i>NOTE: The graphs are dynamic as the data is extracted from MongoDB, based on this all the actions/logins data would be refereshed with the page</i></p>
+
+</br></br></br>
+
+<div id="analysis3"></div>
+<div style="overflow:scroll; height:200px">
+    <p><b>Representation:</b></p>
+    <p>
+        <li>User login frequencies</li>
+        <li>Multi/Single user login analysis</li>
+        <li>Compare/Analyse the time spent by different users on individual dates</li>
+    </p>
+    <p><b>Analytics:</b></p>
+    <p>
+        This graph is a visual representation of the login activity along with the login counts of single/multi users which will help to 
+        analyse the time, users are involved with StackOverFlow on a partiular date.
+    </p>
+    <p><b>How does it matter?</b></p>
+    <p>
+        <li>To visualize and analyse, how frequently the individual user is accessing the StackOverFlow page</li>
+        <li>To visualize and analyse, which dates are getting higher trafic</li>
+    </p>
+    <p><b>How to get Results?</b></p>
+    <p>
+        <li><i>Mouse Hover:</i> Provides the login counts of individual user (based on active users in the legend)</li>
+        <li><i>Legends:</i> Enable/Disable the user by clicking the user legend (enables to select the users whom the user want to analyze)</li>
+        For instance: If the user (aaa) wants to compare the time spent with user (bbb), then user can enable the 
+        two users from the legends and make the comparision to find which user is spending more time on a particular date.
+    </p>
+</div>
+
+</br></br></br>
+
+<div id="analysis2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div style="overflow:scroll; height:200px">
+    <p><b>Representation:</b></p>
+    <p>
+        <li>Individual user action frequencies</li>
+        <li>Multi/Single user action analysis</li>
+        <li>Compare/Analyse the actions performed by different users</li>
+    </p>
+    <p><b>Analytics:</b></p>
+    <p>
+        This graph is a visual representation of the users along with thier actions which will help user to analyse/compare 
+        their actions on StackOverFlow with other users.
+    </p>
+    <p><b>How does it matter?</b></p>
+    <p>
+        <li>To visualize and analyse, how frequently the individual user is performing a particular action on StackOverFlow page</li>
+        <li>To visualize and analyse, which of the action/features that users are performing compared to others</li>
+    </p>
+    <p><b>How to get Results?</b></p>
+    <p>
+        <li><i>Mouse Hover:</i> Provides the individual action counts of individual user (based on active users in the legend)</li>
+        <li><i>Legends:</i> Enable/Disable the user by clicking the user legend (enables to select the users whom the user want to analyze)</li>
+        For instance: If the user (aaa) wants to compare the actions with user (bbb), then user can enable the 
+        two users from the legends and make the comparision to find which user performed more the individual action.
+    </p>
+</div>
+
+</br></br></br>
+
+<div id="analysis1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div style="overflow:scroll; height:200px">
+    <p><b>Representation:</b></p>
+    <p>
+        <li>Collective action density chart</li>
+        <li>Multi/Single action analysis</li>
+        <li>Compare/Analyse the density of actions performed</li>
+    </p>
+    <p><b>Analytics:</b></p>
+    <p>
+        This graph is a visual representation of the all the user actions combined together. From the graph 
+        user action analysis can be performed.
+    </p>
+    <p><b>How does it matter?</b></p>
+    <p>
+        <li>To visualize and analyse, how frequently a particular action is performed on StackOverFlow page</li>
+        <li>To visualize and analyse, which of the action/features that users are performing compared to other actions</li>
+    </p>
+    <p><b>How to get Results?</b></p>
+    <p>
+        <li><i>Mouse Hover:</i> Provides the action details and percentage occupied (based on the active actions in the legends)</li>
+        <li><i>Legends:</i> Enable/Disable the actions by clicking the action legend (enables to select the action the user want to analyze)</li>
+        For instance: It can be deduced that the action with the largest pie in the pie chart has been performed the most times collectively by all the users.
+    </p>
+</div>
+
+</br></br></br>
+
+<div id="bonusAnalysis"></div>
+<div style="overflow:scroll; height:200px">
+    <p><br/><i>NOTE: By defualt the cloud displays all the tags for all the actions combined</i></p>
+    <p><b>Representation:</b></p>
+    <p>
+        <li>Collective StackOverFlow tag chart</li>
+        <li>Single action StackOverFlow tag analysis</li>
+        <li>Compare/Analyse the density of tags searched based on the user actions</li>
+    </p>
+    <p><b>Analytics:</b></p>
+    <p>
+        This wordcloud is a visual representation of the all the tags based on the actions performed by the user on
+        StackOverFlow page. Based on the this cloud, user proficiency in a particular area can be analysed.
+    </p>
+    <p><b>How does it matter?</b></p>
+    <p>
+        <li>To visualize and analyse, how frequently a particular tag is searched on StackOverFlow page</li>
+        <li>To visualize and analyse, user proficiency in the field based on particular tag frequency</li>
+    </p>
+    <p><b>How to get Results?</b></p>
+    <p>
+        <li><i>Mouse Hover:</i> Provides the frequencies of the tag (based on the active action in the pie chart)</li>
+        <li><i>Pie Chart Selection:</i> Select a user action by clicking on the pie chart, which enables the tags for that particular action</li>
+        <li>Larger the word size, higher is its frequency</li>
+        For instance: If count of tag (java) is the highest when the user is upvoting, this implies that
+        users are comfortable in that language OR trying to find indepth knowledge in that field OR able to underatand the
+        solutions/comments.
+    </p>
+</div>
+
+<script>
+    var series1 = new Array(); 
+    $.get("/data/responsedata1", function(data){
+        data = data.data;
+        for (var i=0; i<data.length; i++) {
+            series1.push({
+                name: data[i]._id,
+                y: data[i].count
+            })
+        };
+        
+        var textArray = new Array(data.length);
+        textArray[0] = 'java sql plsql sql plsql sql plsql sql plsql sql plsql sql plsql sql plsql functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle ';
+        textArray[1] = 'c c++ c/c++ java python erlang sql plsql functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  sql plsql sql plsql sql plsql sql plsql elixir java java java java java java java java ruby rails php erlang elixir ruby rails php erlang elixir ruby rails php erlang elixir ruby rails php erlang elixir ruby rails php';
+        textArray[2] = 'java java java java sql plsql sql plsql python jquery java java java java java java java java node node nodejs node nodejs node nodejs nodejs python erlang elixir functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  python erlang elixir python erlang elixir python erlang elixir python erlang elixir python erlang elixir angular js';
+        textArray[3] = 'javascript c/c++ c/c++ node nodejs sql plsql node nodejsc/c++ c/c++ node  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle nodejs c/c++ java c erlang elixir ruby rails php c++ python';
+        textArray[4] = 'java java java sql plsql sql plsql sql plsql java java java java java java java java java java java jquery node functional-programming objects object-oriented  low-level high-level javascript c c++ erlang java java java java java java java java elixir ruby rails erlang elixir ruby rails jquery node nodejs python angular js  react js java c c++ node python nodejs angularjs js js javascript script java java-8 java-7 java-6 oracle  nodejs jquery node nodejs jquery erlang elixir ruby rails node nodejs jquery node nodejs python erlang elixir python erlang elixir python erlang elixir python erlang elixir angular js';
+        text = textArray[0] + " " + textArray[1] + " " + textArray[2] + " " + textArray[3] + " " + textArray[4];
+        createWordCloud(text);
+        
+        console.log(series1);
+        $(document).ready(function () {
+            // Build the chart
+            Highcharts.chart('analysis1', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Analysis: Total User Actions'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: {point.percentage:.1f}%'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true
+                        },
+                        showInLegend: true,
+                        point: { 
+                            events: {
+                                click: function (event) {
+                                    var index = series1.findIndex(x=>x.name==this.name);
+                                    var text = textArray[index];
+                                    createWordCloud(text);
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Percent',
+                    colorByPoint: true,
+                    data: series1
+                }]
+            });
+        });
+    });    
+</script>
+
+<script>
+    var series2 = new Array();
+    var categories = new Array();
+    $.get("/data/responsedata2", function(data){
+        data = data.data;
+        console.log(data);
+
+        for (var i=0; i<data.length; i++) {
+            var value = data[i]._id.action;
+            var index = categories.findIndex(x=>x==value);
+            if (index == -1) {
+                categories.push(value);
+            }
+        };
+
+        for (var i=0; i<data.length; i++) {
+            var user = data[i]._id.username;
+            var index = series2.findIndex(x=>x.name==user);
+            if (index == -1) {
+                var values = new Array(categories.length).fill(0);
+
+                for(var j=0; j<data.length; j++) {
+                    if(data[j]._id.username == user) {
+                        var action = data[j]._id.action;
+                        var indexValue = categories.findIndex(x=>x==action);
+                        values[indexValue] = data[j].count;
+                    }
+                }
+
+                console.log(user);
+                console.log(values);
+
+                series2.push({
+                    name: user,
+                    data: values
+                })
+            }
+        };
+
+        console.log(series2);
+        console.log(categories);
+        Highcharts.chart('analysis2', {
+            chart: {
+                type: 'column',
+                options3d: {
+                    enabled: true,
+                    alpha: 10,
+                    beta: 25,
+                    depth: 70
+                }
+            },
+            title: {
+                text: 'Analysis: User Actions Comparision'
+            },
+            xAxis: {
+                categories: categories,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Count'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:10f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: series2
+        });
+    });
+</script>
+
+<script>
+    var series3 = new Array();
+    var dateArray = new Array();
+    
+    $.get("/data/responsedata3", function(data){
+        data = data.data;
+        console.log(data);
+
+        for (var i=0; i<data.length; i++) {
+            var day = data[i]._id.day;
+            var month = data[i]._id.month;
+            var year = data[i]._id.year;
+            var date1 = month + "/" + day + "/" + year;
+            var index = dateArray.findIndex(x=>x==date1);
+            if(index == -1) {
+                dateArray.push(date1);
+            }
+        }
+        console.log(dateArray);
+
+        for (var i=0; i<data.length; i++) {
+            var user = data[i]._id.user;
+            var value = new Array(dateArray.length).fill(0);
+            var index = series3.findIndex(x=>x.name==user);
+            if (index == -1) {
+                for (var j=0; j<data.length; j++) {
+                    if (data[j]._id.user == user) {
+                        var day = data[j]._id.day;
+                        var month = data[j]._id.month;
+                        var year = data[j]._id.year;
+                        var date2 = month + "/" + day + "/" + year;
+                        var dateIndex = dateArray.findIndex(x=>x==date2);
+                        value[dateIndex] = data[j].count;
+                    }
+                }
+                series3.push({
+                    name: user,
+                    data: value
+                });
+            }
+        };
+        console.log(series3);
+
+        Highcharts.chart('analysis3', {
+            title: {
+                text: 'Analysis: User Login Comparisions'
+            },
+            yAxis: {
+                title: {
+                    text: 'Login Frequency'
+                }
+            },
+            xAxis: {
+                title: {
+                    text: 'Dates'
+                },
+                categories: dateArray
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            },
+            series: series3,
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
+    });
+</script>
+
+<script>
+    function createWordCloud(text) {
+        var myConfig = {
+            title: {
+                text: 'Analysis: Tags based on User Actions',
+                "font-weight":"none"
+            },
+            type: 'wordcloud',
+            options: {
+                text: text,
+                rotate: true,
+                style: {
+                    fontFamily: 'Crete Round',
+                    tooltip: {
+                        text: '%text: %hits',
+                        visible: true,
+                        
+                        alpha: 0.9,
+                        backgroundColor: '#1976D2',
+                        borderRadius: 2,
+                        borderColor: 'none',
+                        fontColor: 'white',
+                        fontFamily: 'Georgia',
+                        textAlpha: 1
+                    }
+                }
+            },
+        };
+    
+        zingchart.render({ 
+            id: 'bonusAnalysis', 
+            data: myConfig, 
+            height: 500, 
+            width: '100%' 
+        });
+    }
+</script>
